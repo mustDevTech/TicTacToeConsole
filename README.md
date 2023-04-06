@@ -24,7 +24,7 @@ Tic Tac Toe - это знаменитая игра, в которой двое �
 
 ## Как установить 🛠
 1. Для полноценной работы приложения необходима установленная среда выполнения Java.
-2. Склонируйте репозиторий, используя команду git clone https://github.com/your/repository в вашем терминале.
+2. Склонируйте репозиторий, используя команду git clone https://github.com/mustGamedev/TicTacToeConsole.git в вашем терминале.
 3. Чтобы запустить приложение, откройте терминал в папке src/main/java и введите команду java TicTacToe.
 
 ## Лицензия 📜
@@ -60,7 +60,7 @@ Tic Tac Toe is a famous game in which two players compete to fill the 3x3 board 
 
 ## How to install 🛠
 1. To use the application, you need to have Java Runtime Environment installed.
-2. Clone the repository using the command git clone https://github.com/your/repository in your terminal.
+2. Clone the repository using the command git clone https://github.com/mustGamedev/TicTacToeConsole.git in your terminal.
 3. To run the application, open the terminal in the src/main/java folder and enter the command java TicTacToe.
 
 ## License 📜
