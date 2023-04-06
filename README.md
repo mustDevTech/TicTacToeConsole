@@ -28,7 +28,7 @@ Tic Tac Toe - это знаменитая игра, в которой двое �
 3. Чтобы запустить приложение, откройте терминал в папке src/main/java и введите команду java TicTacToe.
 
 ## Лицензия 📜
-Этот проект доступен под лицензией MIT, дополнительную информацию вы можете найти в файле LICENSE. 😊
+Этот проект доступен под лицензией MIT, дополнительную информацию вы можете найти в файле [LICENSE](https://github.com/mustGamedev/TicTacToeConsole/blob/master/LICENSE). 😊
 
 Играйте и наслаждайтесь игрой в крестики-нолики! 🤩🎉 👏🏼👏🏼👏🏼
 </details>
@@ -64,7 +64,7 @@ Tic Tac Toe is a famous game in which two players compete to fill the 3x3 board 
 3. To run the application, open the terminal in the src/main/java folder and enter the command java TicTacToe.
 
 ## License 📜
-This project is available under the MIT license. For more information, refer to the LICENSE file. 😊
+This project is available under the MIT license. For more information, refer to the [LICENSE](https://github.com/mustGamedev/TicTacToeConsole/blob/master/LICENSE) file. 😊
 
 Play and enjoy the game of Tic Tac Toe! 🤩🎉 👏🏼👏🏼👏🏼
 </details>
