@@ -13,7 +13,7 @@ public class TicTacToe {
     //endregion
     private static final int boardSize = 3;
     private final char[][] board;
-    private char currentPlayer;
+    private char player;
 
 
     /**
@@ -21,7 +21,7 @@ public class TicTacToe {
      */
     public TicTacToe() {
         this.board = new char[boardSize][boardSize];
-        this.currentPlayer = PLAYER_X;
+        this.player = PLAYER_X;
         initializeBoard();
     }
 
@@ -109,7 +109,7 @@ public class TicTacToe {
      */
     private void makeMove(int row, int col) {
         if (board[row][col] == EMPTY_CELL) {
-            board[row][col] = currentPlayer;
+            board[row][col] = player;
             switchPlayer();
         } else {
             System.out.println(LanguageManager.getResource("occupiedCell"));
@@ -124,7 +124,7 @@ public class TicTacToe {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
                 if (board[i][j] == EMPTY_CELL) {
-                    board[i][j] = currentPlayer;
+                    board[i][j] = player;
                     if (checkWin()) {
                         switchPlayer();
                         return;
@@ -136,13 +136,13 @@ public class TicTacToe {
         }
 
         // Check for blocking opponent's winning move
-        char opponentPlayer = (currentPlayer == PLAYER_X) ? PLAYER_O : PLAYER_X;
+        char opponentPlayer = (player == PLAYER_X) ? PLAYER_O : PLAYER_X;
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
                 if (board[i][j] == EMPTY_CELL) {
                     board[i][j] = opponentPlayer;
                     if (checkWin()) {
-                        board[i][j] = currentPlayer;
+                        board[i][j] = player;
                         switchPlayer();
                         return;
                     } else {
@@ -159,7 +159,7 @@ public class TicTacToe {
             row = random.nextInt(board.length);
             col = random.nextInt(board.length);
         } while (board[row][col] != EMPTY_CELL);
-        board[row][col] = currentPlayer;
+        board[row][col] = player;
         switchPlayer();
     }
 
@@ -168,12 +168,12 @@ public class TicTacToe {
      */
     public void playWithAI() {
         Scanner scanner = new Scanner(System.in);
-        while (!checkWin()) {
+        while (!checkWin() && !isBoardFull()) {
             printBoard();
-            if (currentPlayer == PLAYER_X) {
-                System.out.println(LanguageManager.getResource("playerTurnRow", currentPlayer) + " ");
+            if (player == PLAYER_X) {
+                System.out.println(LanguageManager.getResource("playerTurnRow", player) + " ");
                 int row = scanner.nextInt();
-                System.out.println(LanguageManager.getResource("playerTurnColumn", currentPlayer) + " ");
+                System.out.println(LanguageManager.getResource("playerTurnColumn", player) + " ");
                 int col = scanner.nextInt();
                 makeMove(row, col);
             } else {
@@ -181,11 +181,17 @@ public class TicTacToe {
                 makeAIMove();
             }
         }
-        printBoard();
-        if (currentPlayer == PLAYER_X) {
-            System.out.println(LanguageManager.getResource("playerOWins"));
+
+        if (!checkWin() && isBoardFull()) {
+            printBoard();
+            System.out.println("It's a draw!");
         } else {
-            System.out.println(LanguageManager.getResource("playerXWins"));
+            printBoard();
+            if (player == PLAYER_X) {
+                System.out.println(LanguageManager.getResource("playerOWins"));
+            } else {
+                System.out.println(LanguageManager.getResource("playerXWins"));
+            }
         }
         scanner.close();
     }
@@ -195,16 +201,22 @@ public class TicTacToe {
      */
     public void playWithFriend() {
         Scanner scanner = new Scanner(System.in);
-        while (!checkWin()) {
+        while (!checkWin() && !isBoardFull()) {
             printBoard();
-            System.out.print(LanguageManager.getResource("playerTurnRow", currentPlayer) + " ");
+            System.out.print(LanguageManager.getResource("playerTurnRow", player) + " ");
             int row = scanner.nextInt();
-            System.out.print(LanguageManager.getResource("playerTurnColumn", currentPlayer) + " ");
+            System.out.print(LanguageManager.getResource("playerTurnColumn", player) + " ");
             int col = scanner.nextInt();
             makeMove(row, col);
         }
-        printBoard();
-        System.out.print(LanguageManager.getResource("playerWins", currentPlayer));
+
+        if (!checkWin() && isBoardFull()) {
+            printBoard();
+            System.out.println("It's a draw!");
+        } else {
+            printBoard();
+            System.out.print(LanguageManager.getResource("playerWins", player));
+        }
         scanner.close();
     }
 
@@ -212,6 +224,21 @@ public class TicTacToe {
      * Method to switch the current player
      */
     private void switchPlayer() {
-        currentPlayer = (currentPlayer == PLAYER_X) ? PLAYER_O : PLAYER_X;
+        player = (player == PLAYER_X) ? PLAYER_O : PLAYER_X;
+    }
+
+    /**
+     * Method to check if the board is full
+     * @return true if the board is full, false otherwise
+     */
+    private boolean isBoardFull() {
+        for (char[] chars : board) {
+            for (char cell : chars) {
+                if (cell == EMPTY_CELL) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
