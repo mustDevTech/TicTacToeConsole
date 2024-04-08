@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose game language:");
         System.out.println("1 - English");
@@ -17,12 +15,10 @@ public class Main
         System.out.println("2 - " + LanguageManager.getResource("multiplayer"));
         int gameMode = scanner.nextInt();
 
-        if (gameMode == 1)
-        {
+        if (gameMode == 1) {
             TicTacToe game = new TicTacToe();
-            game.play();
-        } else if (gameMode == 2)
-        {
+            game.playWithAI();
+        } else if (gameMode == 2) {
             TicTacToe game = new TicTacToe();
             game.playWithFriend();
         }
